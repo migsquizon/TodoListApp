@@ -13,6 +13,7 @@ struct Task: Codable, Identifiable {
   var title: String
   var priority: TaskPriority
   var completed: Bool
+//    var date: Date
 }
 
 #if DEBUG

@@ -54,7 +54,10 @@ enum InputError: Error {
 struct TaskCell: View {
   @ObservedObject var taskCellVM: TaskCellViewModel
   var onCommit: (Result<Task, InputError>) -> Void = { _ in }
-  
+    @State var isOpen: Bool = false
+    
+    
+    
   var body: some View {
     HStack {
       Image(systemName: taskCellVM.completionStateIconName)
@@ -72,6 +75,38 @@ struct TaskCell: View {
                     self.onCommit(.failure(.empty))
                   }
       }).id(taskCellVM.id)
+
+    Button(action: {
+             self.isOpen = true
+         }, label: {
+             Text("Date")
+         }).sheet(isPresented: $isOpen, content: {
+            ContentView()
+         })
+                     
+    
     }
+  
   }
+}
+struct ContentView: View {
+    var dateFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .long
+        return formatter
+    }
+
+    @State private var birthDate = Date()
+
+    var body: some View {
+        VStack {
+            Text("Select a due date")
+            DatePicker(selection: $birthDate, in: Date()..., displayedComponents: .date){
+                Text("")
+            }
+            
+
+            Text("Due date selected \(birthDate, formatter: dateFormatter)")
+        }
+    }
 }
