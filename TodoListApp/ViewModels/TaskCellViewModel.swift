@@ -11,11 +11,16 @@ class TaskCellViewModel: ObservableObject, Identifiable  {
   
   var id: String = ""
   @Published var completionStateIconName = ""
+    
+    
+func changeDate(d:Date) {
+        task.date = d
+    }
   
   private var cancellables = Set<AnyCancellable>()
   
-  static func newTask() -> TaskCellViewModel {
-    TaskCellViewModel(task: Task(title: "", priority: .medium, completed: false))
+    static func newTask() -> TaskCellViewModel {
+        TaskCellViewModel(task: Task(title: "", priority: .medium, completed: false,date:Date()))
   }
   
   init(task: Task) {

@@ -76,13 +76,13 @@ struct TaskCell: View {
                   }
       }).id(taskCellVM.id)
 
-    Button(action: {
-             self.isOpen = true
-         }, label: {
-             Text("Date")
-         }).sheet(isPresented: $isOpen, content: {
-            ContentView()
-         })
+//    Button(action: {
+//             self.isOpen = true
+//         }, label: {
+//             Text("Date")
+//         }).sheet(isPresented: $isOpen, content: {
+//            ContentView(taskCellVM: self.taskCellVM)
+//         })
                      
     
     }
@@ -90,23 +90,34 @@ struct TaskCell: View {
   }
 }
 struct ContentView: View {
+    
+    @ObservedObject var taskCellVM: TaskCellViewModel
+    
     var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateStyle = .long
         return formatter
     }
 
-    @State private var birthDate = Date()
+    @State private var dueDate = Date()
+    
 
     var body: some View {
         VStack {
             Text("Select a due date")
-            DatePicker(selection: $birthDate, in: Date()..., displayedComponents: .date){
+            DatePicker(selection: self.$dueDate, in: Date()..., displayedComponents: .date
+                       ){
                 Text("")
             }
+//            Text("Due date selected \($dueDate ,formatter: dateFormatter)")
             
-
-            Text("Due date selected \(birthDate, formatter: dateFormatter)")
+            Button(  action: {
+                self.taskCellVM.changeDate(d: self.dueDate)
+                }, label: {
+                    Text("Accept")}).id(taskCellVM.id)
+                                
+               
+               }
         }
     }
-}
+
