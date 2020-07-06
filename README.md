@@ -5,6 +5,15 @@
 
 The Todo List application is implemented in swift 5.0, with the ability to create, read, update, and delete tasks on the go. 
 
+### Current Features
+
+- CRUD operations on tasks with persistency on disks
+
+### Unfinished features (that I believe is important)
+
+- Date-based tasks
+- Sorting via due date/remaining days left
+- Reminders
 
 
 
@@ -33,7 +42,8 @@ Dillinger requires [Node.js](https://nodejs.org/) v4+ to run.
 
 Building and running the application
 ```sh
-$ cd MiguelTodoList/TodoListApp
+$ git clone https://github.com/migsquizon/TodoListApp.git
+$ cd TodoListApp
 $ pod install
 ## you can either open xcode from terminal
 $ xed . 
