@@ -76,13 +76,13 @@ struct TaskCell: View {
                   }
       }).id(taskCellVM.id)
 
-//    Button(action: {
-//             self.isOpen = true
-//         }, label: {
-//             Text("Date")
-//         }).sheet(isPresented: $isOpen, content: {
-//            ContentView(taskCellVM: self.taskCellVM)
-//         })
+    Button(action: {
+             self.isOpen = true
+         }, label: {
+             Text("Date")
+         }).sheet(isPresented: $isOpen, content: {
+            ContentView(taskCellVM: self.taskCellVM)
+         })
                      
     
     }
